@@ -6,6 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import "./style.css";
 import Grid from '../Grid/Grid';
+import List from '../List/List';
 
 
 
@@ -45,7 +46,16 @@ export default function TabsComponent({coins}) {
           ) )}
         </div>
         </TabPanel>
-        <TabPanel value="list">Item Two</TabPanel>
+        <TabPanel value="list">
+            <table className='list-flex'>
+                <tbody>
+                {coins.map((coin, i) => (
+                 <List coin={coin} key ={i}/>
+          ) )} 
+                </tbody>
+            
+            </table>
+        </TabPanel>
       </TabContext>
      
 
