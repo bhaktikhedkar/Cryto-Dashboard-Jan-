@@ -30,13 +30,8 @@ function Dashboard() {
     <div>
       {loading ? <Loader/> : <>
         <Header />
-        <TabsComponent />
-         {/* {coins.map((coin, i) => (
-          // <p>{i+1}.{coin.name}</p>
-          <p>
-            {i + 1}.<img src={coin.image} />
-          </p> 
-        ))} */}
+        <TabsComponent coins={coins}/>
+       
       </>}
     </div>
   );
