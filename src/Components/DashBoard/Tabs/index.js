@@ -10,7 +10,7 @@ import List from '../List/List';
 
 
 
-export default function TabsComponent({coins}) {
+export default function TabsComponent({coins,delay}) {
   const [value, setValue] = React.useState('grid');
 
   const handleChange = (event, newValue) => {
@@ -42,7 +42,7 @@ export default function TabsComponent({coins}) {
         <TabPanel value="grid">  
         <div className='grid-flex'>
         {coins.map((coin, i) => (
-         <Grid coin={coin} key={i} />
+         <Grid coin={coin} key={i} delay={(i % 4) * 0.2}/>
           ) )}
         </div>
         </TabPanel>
@@ -50,7 +50,7 @@ export default function TabsComponent({coins}) {
             <table className='list-flex'>
                 <tbody>
                 {coins.map((coin, i) => (
-                 <List coin={coin} key ={i}/>
+                 <List coin={coin} key ={i} delay={(i % 8) * 0.2}/>
           ) )} 
                 </tbody>
             
