@@ -5,6 +5,7 @@ import axios from "axios"; //you have to install axios by "npm i axios"
 import Loader from "../Components/Common/Loader/Loader";
 import TabsComponent from "../Components/DashBoard/Tabs";
 import Search from "../Components/DashBoard/Search/Search";
+import NavigationIcon from "@mui/icons-material/Navigation";
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
@@ -36,7 +37,7 @@ function Dashboard() {
 
   //whenever we search a coin , even if we type its 1st alphabet , the coins similar to that should be show
   //toLowerCase() - is used to make it case insensitive
-  //trim is used to remove space in the beginning 
+  //trim is used to remove space in the beginning
   // var filteredCoins = coins.filter((coin) => {
   //   if (
   //     coin.name.toLowerCase().includes(search.trim().toLowerCase()) ||
@@ -46,13 +47,31 @@ function Dashboard() {
   //   }
   // });
 
-  var filteredCoins = coins.filter((coin) =>
-   (
+  var filteredCoins = coins.filter(
+    (coin) =>
       coin.name.toLowerCase().includes(search.trim().toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.trim().toLowerCase())
-   )
   );
 
+  //from w3school = scroll to top
+  // Get the button
+  let mybutton = document.getElementById("top-btn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 500 ||
+      document.documentElement.scrollTop > 500
+    ) {
+      mybutton.style.display = "flex";
+    } else {
+      mybutton.style.display = "none";
+    }
+  };
 
   return (
     <div>
@@ -65,6 +84,16 @@ function Dashboard() {
           <TabsComponent coins={filteredCoins} />
         </>
       )}
+      <div
+        className="top-btn"
+        id="top-btn"
+        onClick={() => {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }}
+      >
+        <NavigationIcon />
+      </div>
     </div>
   );
 }
