@@ -4,6 +4,7 @@ import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import { convertNumber } from "../../../Functions/convertNumber";
 import {motion}  from "framer-motion";
+import { Tooltip } from "@mui/material";
 
 function List({ coin , delay }) {
   // convertNumber();
@@ -13,16 +14,27 @@ function List({ coin , delay }) {
     whileInView ={{opacity:1,x:0}}
     transition ={{duration : 0.5 , delay : delay}}
     >
+      <Tooltip title="coin image"  placement="bottom-start">
       <td className="td-img">
         <img src={coin.image} className="coin-image coin-image-td" />
       </td>
+      </Tooltip>
+    
       <td className="td-info">
         <div className="info-flex">
+        <Tooltip title="coin symbol"  placement="bottom-start">
           <p className="coin-symbol td-p">{coin.symbol}</p>
+          </Tooltip>
+          <Tooltip title="coin name"  placement="bottom-start">
           <p className="coin-name td-p">{coin.name}</p>
+          </Tooltip>
         </div>
       </td>
-
+      {/* <Tooltip title=""  placement="bottom-start"></Tooltip> */}
+      <Tooltip
+          title="Coin Price Percentage In 24hrs"
+          placement="bottom-start"
+        >
       {coin.price_change_percentage_24h >= 0 ? (
         <td>
           <div className="chip-flex">
@@ -46,6 +58,10 @@ function List({ coin , delay }) {
           </div>
         </td>
       )}
+      </Tooltip>
+
+      <Tooltip title="Coin Price In USD" placement="bottom-end">
+
       {coin.price_change_percentage_24h >= 0 ? (
         <td className="current-price td-current-price">
           ${coin.current_price.toLocaleString()}
@@ -55,12 +71,19 @@ function List({ coin , delay }) {
           ${coin.current_price.toLocaleString()}
         </td>
       )}
+      </Tooltip>
+
+      <Tooltip title="Coin Total Volume" placement="bottom-end">
       <td className="coin-name td-totalVolume">
         {coin.total_volume.toLocaleString()}
       </td>
+      </Tooltip >
+
+      <Tooltip title="Coin Market Capital" placement="bottom-end">
       <td className="coin-name td-marketCap">
         ${coin.market_cap.toLocaleString()}
       </td>
+      </Tooltip >
       <td className="coin-name mobile">
         ${convertNumber(coin.market_cap)}
       </td>

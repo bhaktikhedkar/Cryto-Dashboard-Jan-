@@ -1,30 +1,38 @@
-import React from 'react';
-import Button from '../Button/Button';
-import TemporaryDrawer from './Drawer';
+import React from "react";
+import Button from "../Button/Button";
+import TemporaryDrawer from "./Drawer";
 import "./Header.css";
+
 function Header() {
   return (
-    <div className='header'>
-      <h1>CryptoTracker<span style={{color:"var(--blue)"}}>.</span></h1>
-      <div className='links'>
-        <a href='/'>
-          <p className='link'>HOME</p>
-          </a>
-          <a href='/compare'>
-          <p className='link'>COMPARE</p>
-          </a>
-          <a href='/watchlist'>
-          <p className='link'>WATCHLIST</p>
-          </a>
-          <a href='/dashboard'>
+    <div className="header">
+      <a href="/">
+        <h1 style={{ cursor: "pointer" }}>
+          CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
+        </h1>
+      </a>
+      <div className="links">
+        <a href="/">
+          <p className="link">HOME</p>
+        </a>
+        <a href="/compare">
+          <p className="link">COMPARE</p>
+        </a>
+        <a href="/watchlist">
+          <p className="link">WATCHLIST</p>
+        </a>
+
+        <a href="/dashboard">
           <Button text={"DASHBOARD"} />
-          </a>
+        </a>
+
+
       </div>
-      <div className='drawer-component'>
+      <div className="drawer-component">
         <TemporaryDrawer />
       </div>
-      </div>
-  )
+    </div>
+  );
 }
 
-export default Header
+export default Header;

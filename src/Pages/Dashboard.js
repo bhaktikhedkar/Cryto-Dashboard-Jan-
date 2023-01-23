@@ -6,11 +6,16 @@ import Loader from "../Components/Common/Loader/Loader";
 import TabsComponent from "../Components/DashBoard/Tabs";
 import Search from "../Components/DashBoard/Search/Search";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import Pagination from "../Components/DashBoard/Pagination/Pagination";
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(""); //for searching the coins on search bar
+  const [page, setPage] = useState(1);
+  const [paginatedCoins , setPaginatedCoins] = useState([]) //thise used to put 10 coins in one page and we can navigate
+
+
 
   useEffect(() => {
     getData();
@@ -24,6 +29,7 @@ function Dashboard() {
       )
       .then((response) => {
         console.log("RESPONSE >>>>", response.data);
+        setPaginatedCoins(response.data.slice(0,10));
         setCoins(response.data);
         setLoading(false); //when we get data we set loading as false;
       })
@@ -73,6 +79,18 @@ function Dashboard() {
     }
   };
 
+  
+  const handlePageChange = (event, value) => {
+    setPage(value);
+
+    //whenever we change the page we want to edit the coins and get only 10 coins in a page
+    //here value : is the page
+    var initial_count = (value-1)*10;
+    setPaginatedCoins(initial_count,initial_count+10);
+  };
+
+
+
   return (
     <div>
       {loading ? (
@@ -81,7 +99,10 @@ function Dashboard() {
         <>
           <Header />
           <Search search={search} handleChange={handleChange} />
-          <TabsComponent coins={filteredCoins} />
+          {/* if we are searching a coin we search in entire doc , ie filteredCoins otherwise display only 10 coins ie paginatedCoins */}
+          {/* otherwise if we search in paginatedCoins coins .....it will not search in entire array and it will search in 10 pages only */}
+          <TabsComponent coins={search ? filteredCoins :paginatedCoins} /> 
+          <Pagination page={page} handlePageChange ={handlePageChange}/>
         </>
       )}
       <div
