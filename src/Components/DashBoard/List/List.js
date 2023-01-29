@@ -9,6 +9,7 @@ import { Tooltip } from "@mui/material";
 function List({ coin , delay }) {
   // convertNumber();
   return (
+    <a href={`/coin/${coin.id}`}>
     <motion.tr className="list-row" 
     initial = {{opacity : 0,x:50}}
     whileInView ={{opacity:1,x:0}}
@@ -88,6 +89,7 @@ function List({ coin , delay }) {
         ${convertNumber(coin.market_cap)}
       </td>
     </motion.tr>
+    </a>
   );
 }
 

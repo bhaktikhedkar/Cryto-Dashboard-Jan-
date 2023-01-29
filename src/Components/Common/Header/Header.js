@@ -2,14 +2,17 @@ import React from "react";
 import Button from "../Button/Button";
 import TemporaryDrawer from "./Drawer";
 import "./Header.css";
+import { Tooltip } from "@mui/material";
 
 function Header() {
   return (
     <div className="header">
       <a href="/">
+        <Tooltip title ="Back Home">
         <h1 style={{ cursor: "pointer" }}>
           CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
         </h1>
+        </Tooltip>
       </a>
       <div className="links">
         <a href="/">

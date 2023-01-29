@@ -7,10 +7,11 @@ import TabPanel from '@mui/lab/TabPanel';
 import "./style.css";
 import Grid from '../Grid/Grid';
 import List from '../List/List';
+import Button from '../../Common/Button/Button';
 
 
 
-export default function TabsComponent({coins,delay}) {
+export default function TabsComponent({coins, setSearch}) {
   const [value, setValue] = React.useState('grid');
 
   const handleChange = (event, newValue) => {
@@ -41,17 +42,23 @@ export default function TabsComponent({coins,delay}) {
         </div>
         <TabPanel value="grid">  
         <div className='grid-flex'>
-        {coins.map((coin, i) => (
+          {coins.length > 0 ? (coins.map((coin, i) => (
          <Grid coin={coin} key={i} delay={(i % 4) * 0.2}/>
-          ) )}
+          ) )) : (<h2 style={{textAlign :"center"}}>Sorry... couldn't find the coin you are looking for.....</h2>)}
+          <div style={{width :"100%", display : "flex" , justifyContent : "center" , margin:"2rem",}}>
+         <Button text="Clear Search" onClick={()=>setSearch("")}/>
+         </div>
         </div>
         </TabPanel>
         <TabPanel value="list">
             <table className='list-flex'>
                 <tbody>
-                {coins.map((coin, i) => (
+                  {coins.length > 0 ?( coins.map((coin, i) => (
                  <List coin={coin} key ={i} delay={(i % 8) * 0.2}/>
-          ) )} 
+          ) )) : (<h2 style={{textAlign :"center"}}>Sorry... couldn't find the coin you are looking for.....</h2>)}
+               <div style={{width :"100%", display : "flex" , justifyContent : "center" , margin:"2rem",}}>
+         <Button text="Clear Search" onClick={()=>setSearch("")}/>
+         </div>
                 </tbody>
             
             </table>

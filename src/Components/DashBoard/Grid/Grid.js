@@ -9,7 +9,10 @@ import { Tooltip } from "@mui/material";
 // conditon && (do this) =>
 // id conditon is true , then (do this)
 function Grid({ coin, delay }) {
+ 
   return (
+    <a href={`/coin/${coin.id}`}>
+      {/* dynamic routing , we should get whole info of coin when we click on grid  */}
     <motion.div
       className={`grid ${coin.price_change_percentage_24h < 0 && "grid-red"}`}
       initial={{ opacity: 0, y: 50 }}
@@ -73,6 +76,7 @@ function Grid({ coin, delay }) {
         </p>
       </Tooltip>
     </motion.div>
+    </a>
   );
 }
 

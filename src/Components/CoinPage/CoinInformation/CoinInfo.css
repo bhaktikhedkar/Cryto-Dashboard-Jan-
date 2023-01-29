@@ -1,0 +1,21 @@
+.info-component h1 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  /* .info-component{
+    background-color: var(--black);
+  } */
+  
+  .info-p a {
+    text-decoration: underline;
+  }
+  
+  .info-p a:hover {
+    color: var(--blue) !important;
+    transition: all 0.3s;
+  }
+
+  .info-p{
+     text-align: left;
+     /* margin-top: 3rem; */
+  }

@@ -5,8 +5,8 @@ import axios from "axios"; //you have to install axios by "npm i axios"
 import Loader from "../Components/Common/Loader/Loader";
 import TabsComponent from "../Components/DashBoard/Tabs";
 import Search from "../Components/DashBoard/Search/Search";
-import NavigationIcon from "@mui/icons-material/Navigation";
 import Pagination from "../Components/DashBoard/Pagination/Pagination";
+import TopButton from "../Components/Common/TopButton/TopButton";
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
@@ -33,12 +33,13 @@ function Dashboard() {
         setCoins(response.data);
         setLoading(false); //when we get data we set loading as false;
       })
-      .catch((error) => console.log("ERROR >>>>", error));
+      .catch((error) => console.log("ERROR >>>>", error.message));
   };
 
   //useState set function for search bar
   const handleChange = (e) => {
     setSearch(e.target.value);
+    console.log(e.target.value);
   };
 
   //whenever we search a coin , even if we type its 1st alphabet , the coins similar to that should be show
@@ -59,25 +60,7 @@ function Dashboard() {
       coin.symbol.toLowerCase().includes(search.trim().toLowerCase())
   );
 
-  //from w3school = scroll to top
-  // Get the button
-  let mybutton = document.getElementById("top-btn");
-
-  // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () {
-    scrollFunction();
-  };
-
-  function scrollFunction() {
-    if (
-      document.body.scrollTop > 500 ||
-      document.documentElement.scrollTop > 500
-    ) {
-      mybutton.style.display = "flex";
-    } else {
-      mybutton.style.display = "none";
-    }
-  };
+  
 
   
   const handlePageChange = (event, value) => {
@@ -86,35 +69,29 @@ function Dashboard() {
     //whenever we change the page we want to edit the coins and get only 10 coins in a page
     //here value : is the page
     var initial_count = (value-1)*10;
-    setPaginatedCoins(initial_count,initial_count+10);
+    setPaginatedCoins(coins.slice(initial_count,initial_count+10));
   };
 
 
 
   return (
     <div>
+      <Header />
       {loading ? (
         <Loader />
       ) : (
         <>
-          <Header />
+          
           <Search search={search} handleChange={handleChange} />
           {/* if we are searching a coin we search in entire doc , ie filteredCoins otherwise display only 10 coins ie paginatedCoins */}
           {/* otherwise if we search in paginatedCoins coins .....it will not search in entire array and it will search in 10 pages only */}
-          <TabsComponent coins={search ? filteredCoins :paginatedCoins} /> 
-          <Pagination page={page} handlePageChange ={handlePageChange}/>
+          <TabsComponent coins={search ? filteredCoins :paginatedCoins} setSearch={setSearch} /> 
+
+          {/* if we dont search for coin , then only show the 10 coins in one page */}
+          {!search && (<Pagination page={page} handlePageChange ={handlePageChange} />)}
         </>
       )}
-      <div
-        className="top-btn"
-        id="top-btn"
-        onClick={() => {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-        }}
-      >
-        <NavigationIcon />
-      </div>
+      <TopButton />
     </div>
   );
 }
