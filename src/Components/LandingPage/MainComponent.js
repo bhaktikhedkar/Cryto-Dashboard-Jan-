@@ -29,7 +29,9 @@ function MainComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay:1.25,duration: 0.75 }}
         >
+          <a href='/dashboard'>
         <Button text = {"Dashboard"}/>
+        </a>
         <Button text = {"Share App"} outlined={true}/>
       </motion.div>
       </div>

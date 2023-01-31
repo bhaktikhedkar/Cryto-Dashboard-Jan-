@@ -3,7 +3,7 @@ export const convertNumber = (number) =>{
     var arr = numberWithCommas.split(",");
     if(arr.length == 5){
         //Trillion
-        return arr[0] + "." + arr[1].slice(0,3) + "T";
+        return arr[0] + "." + arr[1].slice(0,2) + "T";
     }
      else if(arr.length == 4){
         //Billions

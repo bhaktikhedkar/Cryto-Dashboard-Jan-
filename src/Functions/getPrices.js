@@ -5,7 +5,8 @@ export const getPrices = (id,days,priceType,setError) => {
     const prices = axios
   //this api is from market_chart - coin gecko
   //so that we can form chart
-  .get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`).then((response)=>{
+  .get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`)
+  .then((response)=>{
     if(response.data){
       console.log("Prices>>>",response.data.prices);
       if(priceType == "market_caps"){
@@ -20,7 +21,10 @@ export const getPrices = (id,days,priceType,setError) => {
      }
   }).catch((e)=>{
   console.log(e.message);
-  setError(true);
+  if(setError){
+    setError(true);
+  }
+  
   }
   )
   return prices;

@@ -15,18 +15,8 @@ import ToggleComponents from "../Components/CoinPage/ToggleComponent/ToggleCompo
 
 function Coin() {
   const { id } = useParams(); //object destructing
-  console.log("Params", id);
-  //const params = useParams();
-  //to unserstand inspect - you will see the id and all other objects in params.
-  // const params = useParams();
-  // console.log(params);
-  //     return (
-  //     <div><h1>{params.id}</h1></div>
-  //   )
-
-  //For Dynamic routing we use useParams() hooks
-
-  ///////////////////////////////
+  console.log("Params>>", id);
+  
   const [coin, setCoin] = useState({}); //to get coin info when we click on grid / list
 
   const [error, setError] = useState(false); //when we click on the grid/list, we get coin info ....
@@ -136,3 +126,16 @@ function Coin() {
 }
 
 export default Coin;
+
+
+//const params = useParams();
+  //to unserstand inspect - you will see the id and all other objects in params.
+  // const params = useParams();
+  // console.log(params);
+  //     return (
+  //     <div><h1>{params.id}</h1></div>
+  //   )
+
+  //For Dynamic routing we use useParams() hooks
+
+  ///////////////////////////////

@@ -16,7 +16,7 @@ function CoinInfo({title, desc}) {
         {/* if toggle is true then , it should be longDesc otherwise smallDesc */}
         {/* if length is greater than 300 , then toggle otherwise show the description */}
         
-        <p dangerouslySetInnerHTML={{__html: desc.length >= 300 ? (toggle ? longDesc : smallDesc) : desc}} className="info-p" onClick={()=>settoggle(!toggle)}></p>
+        <p dangerouslySetInnerHTML={{__html: desc.length >= 300 ? (toggle ? longDesc : smallDesc) : desc,}} className="info-p" onClick={()=>settoggle(!toggle)}></p>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import Dashboard from './Pages/Dashboard';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Coin from './Pages/Coin';
+import Compare from './Pages/Compare';
 
 function App() {
    //If you wish to customize the theme(in MUI), 
@@ -23,11 +24,12 @@ function App() {
     <ThemeProvider theme={theme}>
      <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route> 
+        <Route path="/" element={<Home />}/>
+        <Route path="/dashboard" element={<Dashboard />}/>
         {/* dynamic routing - " /:id "  - this is the ID - this is url parameter - hence we imported useParams hook*/}
         {/* <Route path="/coin/:id" element={<Coin />}></Route> */}
-        <Route path="/coin/:abc" element={<Coin />}></Route>
+        <Route path="/coin/:id" element={<Coin />}/>
+        <Route path="/compare" element={<Compare />}/>
       </Routes>
       </BrowserRouter>
    </ThemeProvider>
