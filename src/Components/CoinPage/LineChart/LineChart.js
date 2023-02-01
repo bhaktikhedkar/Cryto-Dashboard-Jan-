@@ -14,6 +14,8 @@ function LineChart({ chartData, multiAxis }) {
       mode: "index",
       intersect: false,
     },
+    // y-axis is scales
+    //we are creating 2 y-axis for 2 coins one on right and other on left
     scales: {
       crypto1: {
         position: "left",

@@ -6,6 +6,9 @@ import Dashboard from './Pages/Dashboard';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Coin from './Pages/Coin';
 import Compare from './Pages/Compare';
+import Watchlist from './Pages/Watchlist';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
    //If you wish to customize the theme(in MUI), 
@@ -21,6 +24,7 @@ function App() {
 });
   return (
     <div className="App">
+      <ToastContainer />
     <ThemeProvider theme={theme}>
      <BrowserRouter>
       <Routes>
@@ -30,6 +34,7 @@ function App() {
         {/* <Route path="/coin/:id" element={<Coin />}></Route> */}
         <Route path="/coin/:id" element={<Coin />}/>
         <Route path="/compare" element={<Compare />}/>
+        <Route path="/watchlist" element={<Watchlist />}/>
       </Routes>
       </BrowserRouter>
    </ThemeProvider>

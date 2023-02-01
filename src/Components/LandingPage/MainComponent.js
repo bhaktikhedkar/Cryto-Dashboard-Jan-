@@ -4,6 +4,9 @@ import Button from '../Common/Button/Button';
 import gradient from "../../Assets/gradient.png";
 import iphone from "../../Assets/iphone.png";
 import {motion} from "framer-motion";
+import { RWebShare } from "react-web-share";
+import {toast} from "react-toastify";
+
 
 function MainComponent() {
   return (
@@ -32,7 +35,26 @@ function MainComponent() {
           <a href='/dashboard'>
         <Button text = {"Dashboard"}/>
         </a>
+        <RWebShare
+        data={{
+          text: "Crypto-Dashboard by Bhakti",
+          url: "https://crypto-dashboard-jan2023.netlify.app/",
+          title: "Crypto-Tracker",
+        }}
+        onClick={() => toast.success('App Shared!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          })}
+      >
         <Button text = {"Share App"} outlined={true}/>
+        </RWebShare>
+        
       </motion.div>
       </div>
       <div className='gradient-div'>

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import SelectDays from "../CoinPage/SelectDays/SelectDays";
 import "./SelectCoins.css";
 
+
+// in compare page we have to select 2 coins to show the chart
 function SelectCoins({
   allCoins,
   crypto1,

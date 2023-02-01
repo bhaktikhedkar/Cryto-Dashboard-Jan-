@@ -12,6 +12,7 @@ import { getPrices } from "../Functions/getPrices";
 import { settingChartData } from "../Functions/settingChartData";
 import { settingCoinObject } from "../Functions/settingCoinObject";
 
+// in the compare page we need to select 2 coins 
 function Compare() {
   const [allCoins, setAllCoins] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,10 @@ function Compare() {
   const [coin2Data, setCoin2Data] = useState({});
   // days state
   const [days, setDays] = useState(30);
+  //for chart we need to compare prices of 2 coins
   const [priceType, setPriceType] = useState("prices");
+
+  
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
