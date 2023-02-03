@@ -1,13 +1,46 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import  Button from '@mui/material/Button';
 import { IconButton } from '@mui/material';
+import Switch from "@mui/material/Switch";
+import { toast } from "react-toastify";
 
 export default function TemporaryDrawer() {
   const[open,setOpen] = useState(false);
  
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("theme") == "dark" ? true : false
+  );
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") == "dark") {
+      setDark();
+    } else {
+      setLight();
+    }
+  }, []);
+
+  const changeMode = () => {
+    if (localStorage.getItem("theme") != "dark") {
+      setDark();
+    } else {
+      setLight();
+    }
+    setDarkMode(!darkMode);
+    toast.success("Theme Changed!");
+  };
+
+  const setDark = () => {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+  };
+
+  const setLight = () => {
+    localStorage.setItem("theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
+  };
 
   return (
     <div>
@@ -18,6 +51,7 @@ export default function TemporaryDrawer() {
             onClose={()=>setOpen(false)}
           >
           <div className='drawer-div'>
+          <Switch checked={darkMode} onClick={() => changeMode()} />
           <a href='/'>
           <p className='link'>HOME</p>
           </a>

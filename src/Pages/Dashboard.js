@@ -7,6 +7,7 @@ import TabsComponent from "../Components/DashBoard/Tabs";
 import Search from "../Components/DashBoard/Search/Search";
 import Pagination from "../Components/DashBoard/Pagination/Pagination";
 import TopButton from "../Components/Common/TopButton/TopButton";
+import Footer from "../Components/Common/Footer/Footer";
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
@@ -92,6 +93,7 @@ function Dashboard() {
         </>
       )}
       <TopButton />
+      <Footer />
     </div>
   );
 }

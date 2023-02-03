@@ -9,6 +9,7 @@
     border : 2ps solid var(--blue);
     min-width: 80px;
     text-align: center;
+    color: white;
 }
 
 .btn:hover{

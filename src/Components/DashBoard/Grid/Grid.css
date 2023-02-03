@@ -33,17 +33,39 @@
     width: 3rem;
     border-radius: 50%;
   }
-  
+
+  .icon-flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .info-flex {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 0.2rem;
+    width : 100%;
   }
-  
+
+  .watchlist-icon{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    color: var(--green);
+    padding: 0.2rem;
+    height: 1.5rem;
+    width: 1.5rem !important;
+  }
+  .watchlist-icon-red{
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    color: var(--red);
+  }
   .coin-symbol {
     text-transform: uppercase;
-    font-weight: 600;
     margin: 0rem;
   }
   
@@ -108,3 +130,4 @@
   .current-price-red {
     color: var(--red) !important;
   }
+ 
