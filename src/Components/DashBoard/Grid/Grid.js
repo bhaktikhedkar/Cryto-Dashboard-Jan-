@@ -37,7 +37,7 @@ function Grid({ coin, delay }) {
             <div className={`watchlist-icon  ${coin.price_change_percentage_24h < 0 && "watchlist-icon-red"}`} 
             onClick={(e)=> {if (isCoinAdded) {
                   // remove coin
-                  setIsCoinAdded(false)
+                 // setIsCoinAdded(false)
                   removeItemToWatchlist(e, coin.id, setIsCoinAdded);
                 } else {
                   setIsCoinAdded(true);

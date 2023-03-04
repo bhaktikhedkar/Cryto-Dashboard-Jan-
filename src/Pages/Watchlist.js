@@ -1,12 +1,13 @@
-
 import React, { useEffect, useState } from "react";
 import Button from "../Components/Common/Button/Button";
 import Header from "../Components/Common/Header/Header";
-import TabsComponent from "../Components/DashBoard/Tabs/index"
+import TabsComponent from "../Components/DashBoard/Tabs";
 import { get100Coins } from "../Functions/get100Coins";
+import Loader from "../Components/Common/Loader/Loader";
 
 function Watchlist() {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"));
+  const [loading, setLoading] = useState(false);
   const [coins, setCoins] = useState([]);
 
   // we are not using api calls because process of getting large number of coins from api everytime will become slow
@@ -18,9 +19,13 @@ function Watchlist() {
 
   const getData = async () => {
     const allCoins = await get100Coins();
-    if (allCoins) {
-      setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
+    // if (allCoins) {
+    //   setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
+    // }
+    if(watchlist){
+      setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)))
     }
+    setLoading(false);
   };
 
   

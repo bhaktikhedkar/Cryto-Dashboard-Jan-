@@ -30,8 +30,8 @@ function Dashboard() {
       )
       .then((response) => {
         console.log("RESPONSE >>>>", response.data);
-        setPaginatedCoins(response.data.slice(0,10));
         setCoins(response.data);
+        setPaginatedCoins(response.data.slice(0,10));
         setLoading(false); //when we get data we set loading as false;
       })
       .catch((error) => console.log("ERROR >>>>", error.message));
@@ -86,7 +86,7 @@ function Dashboard() {
           <Search search={search} handleChange={handleChange} />
           {/* if we are searching a coin we search in entire doc , ie filteredCoins otherwise display only 10 coins ie paginatedCoins */}
           {/* otherwise if we search in paginatedCoins coins .....it will not search in entire array and it will search in 10 pages only */}
-          <TabsComponent coins={search ? filteredCoins :paginatedCoins} setSearch={setSearch} /> 
+          <TabsComponent coins={search ? filteredCoins : paginatedCoins} setSearch={setSearch} /> 
 
           {/* if we dont search for coin , then only show the 10 coins in one page */}
           {!search && (<Pagination page={page} handlePageChange ={handlePageChange} />)}
