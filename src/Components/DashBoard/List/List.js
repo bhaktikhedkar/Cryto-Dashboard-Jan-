@@ -11,7 +11,7 @@ import { saveItemToWatchlist } from "../../../Functions/saveItemToWatchlist";
 import StarIcon from "@mui/icons-material/Star";
 import { removeItemToWatchlist } from "../../../Functions/removeItemToWatchlist";
 
-function List({ coin , delay }) {
+function List({ coin , delay ,isWatchlistPage}) {
   // convertNumber();
   const watchlist = JSON.parse(localStorage.getItem("watchlist"));
   const [isCoinAdded, setIsCoinAdded] = useState(watchlist?.includes(coin.id));
@@ -21,6 +21,7 @@ function List({ coin , delay }) {
     initial = {{opacity : 0,x:50}}
     whileInView ={{opacity:1,x:0}}
     transition ={{duration : 0.5 , delay : delay}}
+    style={{ display: isWatchlistPage && !isCoinAdded && "none" }}
     >
       <Tooltip title="coin image"  placement="bottom-start">
       <td className="td-img">

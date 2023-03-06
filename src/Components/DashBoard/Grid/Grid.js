@@ -13,7 +13,7 @@ import { useState } from "react";
 // ${coin.price_change_percentage_24h < 0 && "grid-red"} => meaning
 // conditon && (do this) =>
 // id conditon is true , then (do this)
-function Grid({ coin, delay }) {
+function Grid({ coin, delay,isWatchlistPage}) {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"));
   const [isCoinAdded, setIsCoinAdded] = useState(watchlist?.includes(coin.id));
   
@@ -25,6 +25,7 @@ function Grid({ coin, delay }) {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: delay }}
+        style={{ display: isWatchlistPage && !isCoinAdded && "none" }}
       >
         <Tooltip title="coin info" placement="bottom-start">
           <div className="img-flex">
@@ -35,10 +36,13 @@ function Grid({ coin, delay }) {
               <p className="coin-name">{coin.name}</p>
             </div>
             <div className={`watchlist-icon  ${coin.price_change_percentage_24h < 0 && "watchlist-icon-red"}`} 
-            onClick={(e)=> {if (isCoinAdded) {
+            onClick={(e)=> {
+              e.preventDefault();
+              if (isCoinAdded) {
                   // remove coin
                  // setIsCoinAdded(false)
                   removeItemToWatchlist(e, coin.id, setIsCoinAdded);
+                  setIsCoinAdded(false)
                 } else {
                   setIsCoinAdded(true);
                   saveItemToWatchlist(e, coin.id);

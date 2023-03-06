@@ -8,7 +8,8 @@ import Grid from "../Grid/Grid";
 import List from "../List/List";
 import Button from "../../Common/Button/Button";
 
-export default function TabsComponent({ coins, setSearch }) {
+
+export default function TabsComponent({ coins,isWatchlistPage,setSearch }) {
   const [value, setValue] = React.useState("grid");
 
   const handleChange = (event, newValue) => {
@@ -22,7 +23,6 @@ export default function TabsComponent({ coins, setSearch }) {
     "& .Mui-Selected": { color: "var(--blue)" },
     fontFamily: "inter,sans-serif",
     fontWeight: "600",
-    // textTransform : "capitalize",
   };
 
   return (
@@ -36,9 +36,9 @@ export default function TabsComponent({ coins, setSearch }) {
       </div>
       <TabPanel value="grid">
         <div className="grid-flex">
-          {coins.length > 0 ? (
+          {coins.length >0 ? (
             coins.map((coin, i) => (
-              <Grid coin={coin} key={i} delay={(i % 4) * 0.2} />
+              <Grid coin={coin} key={i} delay={(i % 4) * 0.2} isWatchlistPage={isWatchlistPage}/>
             ))
           ) : (
             <div>
@@ -47,13 +47,13 @@ export default function TabsComponent({ coins, setSearch }) {
               </h2>
               <div
                 style={{
-                  width: "100%",
+                  //width: "100%",
                   display: "flex",
                   justifyContent: "center",
                   margin: "2rem",
                 }}
               >
-                <Button text="Clear Search" onClick={() => setSearch("")} />
+                <Button text="Clear Search" onClick={(e) => setSearch("")} />
               </div>
             </div>
           )}
@@ -64,7 +64,7 @@ export default function TabsComponent({ coins, setSearch }) {
         <table className="list-flex">
           {coins.length > 0 ? (
             coins.map((coin, i) => (
-              <List coin={coin} key={i} delay={(i % 8) * 0.2} />
+              <List coin={coin} key={i} delay={(i % 8) * 0.2} isWatchlistPage={isWatchlistPage} />
             ))
           ) : (
             <div>
@@ -79,7 +79,7 @@ export default function TabsComponent({ coins, setSearch }) {
                   margin: "2rem",
                 }}
               >
-                <Button text="Clear Search" onClick={() => setSearch("")} />
+                <Button text="Clear Search" onClick={(e)=> setSearch("") } />
               </div>
             </div>
           )}
